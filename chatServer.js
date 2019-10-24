@@ -63,7 +63,7 @@ function bot(data, socket, questionNum) {
       answer = 'Oh, I see! Well, that is what I am here for! To help you choose a ride ;)';
       waitTime = 7000;
     } else {
-      answer = 'Okay, a ' + input + ' you said? Sweet, but today, you will find an even sweeter ride. I can look into the trade-in value for you if you as well!';
+      answer = 'Okay, a ' + input + ' you said? Sweet, but today, you will find an even sweeter ride. I can look into the trade-in value for you as well!';
       waitTime = 8000;
     }
     question = 'Do you worry about hot weather or cold weather more?'; // load next question
@@ -80,7 +80,7 @@ function bot(data, socket, questionNum) {
     question = 'How many people are you looking to seat excluding yourself? For passenger cars, the limit is 7. ';
   } else if (questionNum == 3) {
     if (input == 0 || input == 1 || input == 2) {
-      answer = 'Okay, in that case, I would recommend a 2 door car like a coupe. ';
+      answer = 'Okay, in that case, I would recommend a 2 door car, like a coupe. ';
       waitTime = 5000;
     } else if (input == 3 || input == 4) {
       answer = 'Okay, in that case, I would recommend any car with four doors. ';
@@ -97,7 +97,7 @@ function bot(data, socket, questionNum) {
     question = 'Are you a sporty or eco driver?';
   } else if (questionNum == 4) {
     if (input.toLowerCase() === 'sporty') {
-      answer = 'Oooh, ;) I like your . ';
+      answer = 'Oooh, ;) I like your taste!!';
       drive = 'sporty';
       waitTime = 5000;
     } else if (input.toLowerCase() === 'eco') {
