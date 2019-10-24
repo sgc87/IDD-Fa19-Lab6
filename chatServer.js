@@ -98,7 +98,7 @@ function bot(data, socket, questionNum) {
     seats = input;
     if (questionNum == 3) {
         question = 'How many people are you looking to seat excluding yourself? For passenger cars, the limit is 7. ';
-    } else if () {
+    } else if (questionNum == 4) {
         question = 'Are you a sporty or eco driver?';
     }
   } else if (questionNum == 4) {
