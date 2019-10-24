@@ -118,7 +118,7 @@ function bot(data, socket, questionNum) {
     }
   question = 'I hope my suggestions were helpful. Leave your email address, and I will send you a list of cars that meet your criteria!!';
   } else {
-    answer = 'Thank you ' + name + ', ! Keep in touch, and I will keep you posted on listings!!';
+    answer = 'Thank you!! Keep in touch, and I will keep you posted on listings!!';
     waitTime = 0;
     question = '';
   }
