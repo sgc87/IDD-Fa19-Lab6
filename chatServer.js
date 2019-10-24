@@ -55,7 +55,7 @@ function bot(data, socket, questionNum) {
 
   /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-    question = 'Hello, ' + input + 'I hope you are having a wonderful day!'; // output response
+    answer = 'Hello, ' + input + 'I hope you are having a wonderful day!'; // output response
     waitTime = 5000;
     question = 'Do you currently have a car? If so, what kind?'; // load next question
   } else if (questionNum == 1) {
@@ -64,6 +64,7 @@ function bot(data, socket, questionNum) {
       waitTime = 5000;
     } else {
       answer = 'Okay, a ' + input + ' you said? Sweet, but today, you will find an even sweeter ride. I can look into the trade-in value for you if you as well!';
+      waitTime = 5000;
     }
     question = 'Do you worry about hot weather or cold weather more?'; // load next question
   } else if (questionNum == 2) {
