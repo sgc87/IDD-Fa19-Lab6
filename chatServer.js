@@ -30,8 +30,8 @@ io.on('connect', function(socket) {
   var questionNum = 0; // keep count of question, used for IF condition.
   socket.on('loaded', function() { // we wait until the client has loaded and contacted us that it is ready to go.
 
-    socket.emit('answer', "Hey, hello I am \"___*-\" a simple chat bot example."); //We start with the introduction;
-    setTimeout(timedQuestion, 5000, socket, "What is your name?"); // Wait a moment and respond with a question.
+    socket.emit('answer', "Hello I am Mr. Car Guru. I will help you choose the perfect vehicle for you! :)"); //We start with the introduction;
+    setTimeout(timedQuestion, 5000, socket, "What shall I address you by?"); // Wait a moment and respond with a question.
 
   });
   socket.on('message', (data) => { // If we get a new message from the client we process it;
@@ -48,45 +48,78 @@ function bot(data, socket, questionNum) {
   var answer;
   var question;
   var waitTime;
+  var temp; // For recording if more concerned about cold or hot weather
+  var seats; // Record number of car seats wanted
+  var drive; // Record driving style
+  var boogie; // Record if want luxury brand car
 
   /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-    answer = 'Hello ' + input + ' :-)'; // output response
+    question = 'Hello, ' + input + 'I hope you are having a wonderful day!'; // output response
     waitTime = 5000;
-    question = 'How old are you?'; // load next question
+    question = 'Do you currently have a car? If so, what kind?'; // load next question
   } else if (questionNum == 1) {
-    answer = 'Really, ' + input + ' years old? So that means you were born in: ' + (2018 - parseInt(input)); // output response
-    waitTime = 5000;
-    question = 'Where do you live?'; // load next question
-  } else if (questionNum == 2) {
-    answer = 'Cool! I have never been to ' + input + '.';
-    waitTime = 5000;
-    question = 'Whats your favorite color?'; // load next question
-  } else if (questionNum == 3) {
-    answer = 'Ok, ' + input + ' it is.';
-    socket.emit('changeBG', input.toLowerCase());
-    waitTime = 5000;
-    question = 'Can you still read the font?'; // load next question
-  } else if (questionNum == 4) {
-    if (input.toLowerCase() === 'yes' || input === 1) {
-      answer = 'Perfect!';
+    if (input === 'no') {
+      answer = 'Oh, I see! Well, that is what I am here for! To help you choose a ride ;)';
       waitTime = 5000;
-      question = 'Whats your favorite place?';
-    } else if (input.toLowerCase() === 'no' || input === 0) {
-      socket.emit('changeFont', 'white'); /// we really should look up the inverse of what we said befor.
-      answer = ''
-      question = 'How about now?';
-      waitTime = 0;
-      questionNum--; // Here we go back in the question number this can end up in a loop
     } else {
-      question = 'Can you still read the font?'; // load next question
-      answer = 'I did not understand you. Could you please answer "yes" or "no"?'
+      answer = 'Okay, a ' + input + ' you said? Sweet, but today, you will find an even sweeter ride. I can look into the trade-in value for you if you as well!';
+    }
+    question = 'Do you worry about hot weather or cold weather more?'; // load next question
+  } else if (questionNum == 2) {
+    if (input.toLowerCase() === 'cold' || input.toLowerCase() === 'cold weather') {
+      answer = 'Cold weather I see. In that case, I recommend getting heated seats, usually a $500 option by itself. I also recommend getting AWD or 4WD if it snows where you live. ';
+      temp = 'cold';
+      waitTime = 5000;
+    } else if (input.toLowerCase() === 'hot' || input.toLowerCase() === 'hot weather') {
+      answer = 'Hot weather I see. In that case, I recommend getting cooled seats. However, this is usually part of a premium package as cooled seats are currently available with leather seats. ';
+      temp = 'hot';
+      waitTime = 5000;
+    }
+    question = 'How many people are you looking to seat excluding yourself? For passenger cars, the limit is 7. ';
+  } else if (questionNum == 3) {
+    if (input === 0 || input === 1 || input === 2) {
+      answer = 'Okay, in that case, I would recommend a 2 door car like a coupe. ';
+      waitTime = 5000;
+    } else if (input === 3 || input === 4) {
+      answer = 'Okay, in that case, I would recommend any car with four doors. ';
+      waitTime = 5000;
+    } else if (input === 5 || input === 6 || input === 7) {
+      answer = 'Okay, in that case, I would recommend an SUV, crossover, or a minivan. ';
+      waitTime = 5000;
+    } else {
+      answer = 'I literally just said 7 is the limit. Please pick a number from 0-7. :|';
       questionNum--;
       waitTime = 5000;
     }
-    // load next question
+    seats = input;
+    question = 'Are you a sporty or eco driver?';
+  } else if (questionNum == 4) {
+    if (input.toLowerCase() === 'sporty') {
+      answer = 'Oooh, ;) I like your . ';
+      drive = 'sporty';
+      waitTime = 5000;
+    } else if (input.toLowerCase() === 'eco') {
+      answer = 'Mmh, I was hoping you would want some spice, but eco driving does save you money!!';
+      drive = 'eco';
+      waitTime = 5000;
+    }
+    question = 'Are you interested in luxury cars?';
+  } else if (questionNum == 5) {
+    if (input.toLowerCase() === 'yes') {
+      answer = 'Oh wow! We got a high roller here!! XD';
+      boogie = 'luxury';
+      waitTime = 5000;
+    } else if (input.toLowerCase() === 'no') {
+      answer = 'Very nice, I know plenty of value packed cars that are basically luxury cars without the brand name!';
+      boogie = 'non-luxury';
+      waitTime = 5000;
+    }
+    answer = 'So, you said you are a ' + drive + ' kind of a driver, who is concerned about ' + temp + ' weather, who wants a car that can seat ' + seats + ' number of people, and is ' + boogie + '!!!'; // output response
+    waitTime = 5000;
+    question = 'I hope my suggestions were helpful. Leave your email address, and I will send you a list of cars that meet your criteria!!';
   } else {
-    answer = 'I have nothing more to say!'; // output response
+    answer = 'Thanks!! Keep in touch, and I will keep you posted on listings!!';
     waitTime = 0;
     question = '';
   }
