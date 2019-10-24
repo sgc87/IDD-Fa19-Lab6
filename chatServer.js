@@ -97,9 +97,10 @@ function bot(data, socket, questionNum) {
       answer = 'I literally just said 7 is the limit. Please pick a number from 0-7. :|';
       questionNum--;
       waitTime = 5000;
+      question = 'How many people are you looking to seat excluding yourself? For passenger cars, the limit is 7. ';
     }
     seats = input;
-    question = 'How many people are you looking to seat excluding yourself? For passenger cars, the limit is 7. ';
+    question = 'Are you a sporty or eco driver?';
   } else if (questionNum == 4) {
     if (input.toLowerCase() === 'sporty') {
       answer = 'Oooh, ;) I like your taste!!';
@@ -121,9 +122,7 @@ function bot(data, socket, questionNum) {
       boogie = 'non-luxury';
       waitTime = 5000;
     }
-    answer = 'So, you said you are a ' + drive + ' kind of a driver, who is concerned about ' + weat + ' weather, who wants a car that can seat ' + seats + ' number of people, and is ' + boogie + '!!!'; // output response
-    waitTime = 5000;
-    question = 'I hope my suggestions were helpful. Leave your email address, and I will send you a list of cars that meet your criteria!!';
+  question = 'I hope my suggestions were helpful. Leave your email address, and I will send you a list of cars that meet your criteria!!';
   } else {
     answer = 'Thank you ' + name + ', ! Keep in touch, and I will keep you posted on listings!!';
     waitTime = 0;
