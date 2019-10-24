@@ -55,7 +55,7 @@ function bot(data, socket, questionNum) {
 
   /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
-    answer = 'Hello, ' + input + 'I hope you are having a wonderful day!'; // output response
+    answer = 'Hello, ' + input + ' I hope you are having a wonderful day!'; // output response
     waitTime = 5000;
     question = 'Do you currently have a car? If so, what kind?'; // load next question
   } else if (questionNum == 1) {
