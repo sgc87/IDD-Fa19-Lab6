@@ -48,15 +48,17 @@ function bot(data, socket, questionNum) {
   var answer;
   var question;
   var waitTime;
-  var temp; // For recording if more concerned about cold or hot weather
+  var weat; // For recording if more concerned about cold or hot weather
   var seats; // Record number of car seats wanted
   var drive; // Record driving style
   var boogie; // Record if want luxury brand car
+  var name; // Person's name
 
   /// These are the main statments that make up the conversation.
   if (questionNum == 0) {
     answer = 'Hello, ' + input + ' I hope you are having a wonderful day!'; // output response
     waitTime = 5000;
+    name = input;
     question = 'Do you currently have a car? If so, what kind?'; // load next question
   } else if (questionNum == 1) {
     if (input === 'no') {
@@ -70,11 +72,11 @@ function bot(data, socket, questionNum) {
   } else if (questionNum == 2) {
     if (input.toLowerCase() === 'cold' || input.toLowerCase() === 'cold weather') {
       answer = 'Cold weather I see. In that case, I recommend getting heated seats, usually a $500 option by itself. I also recommend getting AWD or 4WD if it snows where you live. ';
-      temp = 'cold';
+      weat = 'cold';
       waitTime = 10000;
     } else if (input.toLowerCase() === 'hot' || input.toLowerCase() === 'hot weather') {
       answer = 'Hot weather I see. In that case, I recommend getting cooled seats. However, this is usually part of a premium package as cooled seats are currently available with leather seats. ';
-      temp = 'hot';
+      weat = 'hot';
       waitTime = 10000;
     }
     question = 'How many people are you looking to seat excluding yourself? For passenger cars, the limit is 7. ';
@@ -82,19 +84,22 @@ function bot(data, socket, questionNum) {
     if (input == 0 || input == 1 || input == 2) {
       answer = 'Okay, in that case, I would recommend a 2 door car, like a coupe. ';
       waitTime = 5000;
+      question = 'Are you a sporty or eco driver?';
     } else if (input == 3 || input == 4) {
       answer = 'Okay, in that case, I would recommend any car with four doors. ';
       waitTime = 5000;
+      question = 'Are you a sporty or eco driver?';
     } else if (input == 5 || input == 6 || input == 7) {
       answer = 'Okay, in that case, I would recommend an SUV, crossover, or a minivan. ';
       waitTime = 5000;
+      question = 'Are you a sporty or eco driver?';
     } else {
       answer = 'I literally just said 7 is the limit. Please pick a number from 0-7. :|';
       questionNum--;
       waitTime = 5000;
     }
     seats = input;
-    question = 'Are you a sporty or eco driver?';
+    question = 'How many people are you looking to seat excluding yourself? For passenger cars, the limit is 7. ';
   } else if (questionNum == 4) {
     if (input.toLowerCase() === 'sporty') {
       answer = 'Oooh, ;) I like your taste!!';
@@ -116,11 +121,11 @@ function bot(data, socket, questionNum) {
       boogie = 'non-luxury';
       waitTime = 5000;
     }
-    answer = 'So, you said you are a ' + drive + ' kind of a driver, who is concerned about ' + temp + ' weather, who wants a car that can seat ' + seats + ' number of people, and is ' + boogie + '!!!'; // output response
+    answer = 'So, you said you are a ' + drive + ' kind of a driver, who is concerned about ' + weat + ' weather, who wants a car that can seat ' + seats + ' number of people, and is ' + boogie + '!!!'; // output response
     waitTime = 5000;
     question = 'I hope my suggestions were helpful. Leave your email address, and I will send you a list of cars that meet your criteria!!';
   } else {
-    answer = 'Thanks!! Keep in touch, and I will keep you posted on listings!!';
+    answer = 'Thank you ' + name + ', ! Keep in touch, and I will keep you posted on listings!!';
     waitTime = 0;
     question = '';
   }
