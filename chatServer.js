@@ -92,15 +92,9 @@ function bot(data, socket, questionNum) {
       waitTime = 5000;
     } else {
       answer = 'I literally just said 7 is the limit. Please pick a number from 0-7. :|';
-      questionNum--;
       waitTime = 5000;
     }
-    seats = input;
-    if (questionNum == 3) {
-        question = 'How many people are you looking to seat excluding yourself? For passenger cars, the limit is 7. ';
-    } else if (questionNum == 4) {
-        question = 'Are you a sporty or eco driver?';
-    }
+    question = 'Are you a sporty or eco driver?';
   } else if (questionNum == 4) {
     if (input.toLowerCase() === 'sporty') {
       answer = 'Oooh, ;) I like your taste!!';
